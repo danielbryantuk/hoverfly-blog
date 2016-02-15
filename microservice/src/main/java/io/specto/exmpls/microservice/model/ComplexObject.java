@@ -1,4 +1,4 @@
-package io.specto.exmpls.macroservice.model;
+package io.specto.exmpls.microservice.model;
 
 import java.util.ArrayList;
 import java.util.List;

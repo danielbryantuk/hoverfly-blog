@@ -1,7 +1,7 @@
-package io.specto.exmpls.macroservice.controllers;
+package io.specto.exmpls.microservice.controllers;
 
-import io.specto.exmpls.macroservice.model.ComplexObject;
-import io.specto.exmpls.macroservice.services.ComplexObjectService;
+import io.specto.exmpls.microservice.model.ComplexObject;
+import io.specto.exmpls.microservice.services.ComplexObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

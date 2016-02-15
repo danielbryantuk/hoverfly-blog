@@ -1,6 +1,6 @@
-package io.specto.exmpls.macroservice.services;
+package io.specto.exmpls.microservice.services;
 
-import io.specto.exmpls.macroservice.model.ComplexObject;
+import io.specto.exmpls.microservice.model.ComplexObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
