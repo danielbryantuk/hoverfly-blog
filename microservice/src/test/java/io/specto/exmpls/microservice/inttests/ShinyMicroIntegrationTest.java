@@ -18,30 +18,16 @@ import static org.junit.Assert.assertTrue;
 @ActiveProfiles(profiles = "TEST")
 @SpringApplicationConfiguration(Application.class)
 @WebIntegrationTest
-public class ShinyMicroIntegrationTest {
+public class ShinyMicroIntegrationTest extends AbstractHoverflyIntegrationTest {
 
-    private static final String HOVERFLY_LOCATION = "/Users/danielbryant/Documents/dev/daniel-bryant-uk/hoverfly-blog/microservice/";
-    private static Process hoverflyProcess;
+    public static final String SPEEDY_REQUEST_URI = "http://localhost:8090/speedyRequest";
 
     private RestTemplate restTemplate = new RestTemplate();
-
-    @BeforeClass
-    public static void setup() throws Exception {
-        ProcessBuilder builder = new ProcessBuilder()
-                .inheritIO()
-                .command(HOVERFLY_LOCATION + "hoverfly");
-        hoverflyProcess = builder.start();
-    }
-
-    @AfterClass
-    public static void teardown() throws Exception {
-        hoverflyProcess.destroy();
-    }
 
     @Test
     public void test() {
         ComplexObject[] complexObjects =
-                restTemplate.getForObject("http://localhost:8090/speedyRequest", ComplexObject[].class);
+                restTemplate.getForObject(SPEEDY_REQUEST_URI, ComplexObject[].class);
         assertTrue(complexObjects.length == 1);
     }
 
