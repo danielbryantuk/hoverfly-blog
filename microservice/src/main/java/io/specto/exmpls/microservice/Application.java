@@ -1,5 +1,6 @@
 package io.specto.exmpls.microservice;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -18,18 +19,22 @@ import java.net.Proxy;
 @EnableAutoConfiguration
 public class Application {
 
+    @Value("${hoverfly.host:localhost}")
+    private String hoverflyHost;
+
+    @Value("${hoverfly.port:8500}")
+    private int hoverflyPort;
+
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
     }
 
     @Bean
     @Profile("TEST")
-    public RestTemplate getProxiedRestTemplate() {
+    public RestTemplate getHoverflyProxiedRestTemplate() {
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-
-        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", 8500));
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(hoverflyHost, hoverflyPort));
         requestFactory.setProxy(proxy);
-
         return new RestTemplate(requestFactory);
     }
 
