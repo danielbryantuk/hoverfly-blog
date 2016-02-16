@@ -2,9 +2,9 @@ package io.specto.exmpls.microservice.inttests;
 
 import io.specto.exmpls.microservice.Application;
 import io.specto.exmpls.microservice.model.ComplexObject;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
@@ -18,9 +18,12 @@ import static org.junit.Assert.assertTrue;
 @ActiveProfiles(profiles = "TEST")
 @SpringApplicationConfiguration(Application.class)
 @WebIntegrationTest
-public class ShinyMicroIntegrationTest extends AbstractHoverflyIntegrationTest {
+public class ShinyMicroIntegrationTest {
 
     public static final String SPEEDY_REQUEST_URI = "http://localhost:8090/speedyRequest";
+
+    @ClassRule
+    public static TestRule hoverflyRule = new HoverflyRule();
 
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -30,5 +33,4 @@ public class ShinyMicroIntegrationTest extends AbstractHoverflyIntegrationTest {
                 restTemplate.getForObject(SPEEDY_REQUEST_URI, ComplexObject[].class);
         assertTrue(complexObjects.length == 1);
     }
-
 }

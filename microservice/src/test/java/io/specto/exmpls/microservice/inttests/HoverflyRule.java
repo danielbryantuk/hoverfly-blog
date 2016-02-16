@@ -1,24 +1,23 @@
 package io.specto.exmpls.microservice.inttests;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.rules.ExternalResource;
 
-public class AbstractHoverflyIntegrationTest {
+public class HoverflyRule extends ExternalResource {
 
     private static final String HOVERFLY_LOCATION = "/Users/danielbryant/Documents/dev/daniel-bryant-uk/hoverfly-blog/microservice/";
 
     private static Process hoverflyProcess;
 
-    @BeforeClass
-    public static void setup() throws Exception {
+    @Override
+    protected void before() throws Throwable {
         ProcessBuilder builder = new ProcessBuilder()
                 .inheritIO()
                 .command(HOVERFLY_LOCATION + "hoverfly");
         hoverflyProcess = builder.start();
     }
 
-    @AfterClass
-    public static void teardown() throws Exception {
+    @Override
+    protected void after() {
         hoverflyProcess.destroy();
     }
 }
