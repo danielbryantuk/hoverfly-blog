@@ -7,18 +7,21 @@ The goal of this post is to share our practical lessons of incorporating the Hov
 Let’s create an experimental playground with a fake Java ‘monolith’ and an example microservice. When working with Java microservices, I’m a big fan of the Spring Boot platform, and so this is what we will use...
 
 ## The problem of working with an unavailable monolith
+Let's start up our sample monolith 'macroservice' and our microservice. Open a terminal window and run the following:
 
 ```
 hoverfly-blog $ cd macroservice
 macroservice $ mvn spring-boot:run
 ```
 
+Open up another terminal window and type the following:
+
 ```
 hoverfly-blog $ cd microservice
 microservice $ mvn spring-boot:run
 ```
 
-Now let’s make a request against the microservice:
+Now open up a third terminal window and make a request against the microservice:
 
 
 ```
@@ -45,7 +48,7 @@ hoverfly-blog $ curl localhost:8090/speedyRequest
 
 Boom! We can no longer test our microservice due to the dependency on macroservice HTTP endpoint for downstream communication.
 
-## Let’s introduce some API simulation...
+## Let’s introduce some API simulation with Hoverfly...
 
 Shut everything down, and start the monolith again
 
@@ -80,7 +83,7 @@ microservice $ ./hoverfly
 ```
 Let’s kill the monolith/macroservice again with ^C
 
-Now, make the microservice call again:
+Now, make the call against the microservice again:
 
 ```
 hoverfly-blog $ curl localhost:8090/speedyRequest
@@ -95,3 +98,4 @@ Everything still works - even without the monolith running! If we look at the lo
 ```
 {"bodyLength":58,"destination":"localhost:8080","key":"7e5f6ff30f2adcf5d402e7bbbaf632db","level":"info","method":"GET","middleware":"","mode":"virtualize","msg":"Response found, returning","path":"/slowFragileRequest","rawQuery":"","status":200,"time":"2016-02-16T15:25:32Z"}
 ```
+Check out the accompanying blog post on [https://www.specto.io/](https://www.specto.io/)!
