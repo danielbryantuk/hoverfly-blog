@@ -4,7 +4,7 @@ import org.junit.rules.ExternalResource;
 
 public class HoverflyRule extends ExternalResource {
 
-    private static final String HOVERFLY_LOCATION = "/Users/danielbryant/Documents/dev/daniel-bryant-uk/hoverfly-blog/microservice/";
+    private static final String HOVERFLY_LOCATION = "../../hoverfly-blog/microservice/";
 
     private static Process hoverflyProcess;
 
