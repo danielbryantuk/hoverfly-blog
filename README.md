@@ -98,4 +98,4 @@ Everything still works - even without the monolith running! If we look at the lo
 ```
 {"bodyLength":58,"destination":"localhost:8080","key":"7e5f6ff30f2adcf5d402e7bbbaf632db","level":"info","method":"GET","middleware":"","mode":"virtualize","msg":"Response found, returning","path":"/slowFragileRequest","rawQuery":"","status":200,"time":"2016-02-16T15:25:32Z"}
 ```
-Check out the accompanying blog post on [https://www.specto.io/](https://www.specto.io/)!
+Check out the accompanying blog post on [the Specto website](https://www.specto.io/blog/using-api-simulation-to-build-microservices.html)
